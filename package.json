@@ -1,0 +1,45 @@
+{
+  "name": "project_euler",
+  "version": "1.0.0",
+  "description": "This code collection aims to solve project euler problems",
+  "main": "testrun.js",
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [],
+  "scripts": {
+    "clean": "rimraf lib && rimraf coverage && rimraf output/*",
+    "format": "prettier --write \"{src,tests}/**/*.ts\" --single-quote --trailing-comma es5",
+    "lint": "tslint --force --format verbose \"src/**/*.ts\"",
+    "prepublish": "npm run build",
+    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
+    "build": "tsc --pretty",
+    "watch": "npm run build -- --watch",
+    "test": "mocha -r ts-node/register test/*.test.ts",
+    "test:integrations": "mocha -r ts-node/register test/integrations/*.integration.ts",
+    "test:ci": "node node_modules/mocha/bin/mocha -r ts-node/register --reporter mocha-junit-reporter test/*.test.ts",
+    "test:debug": "mocha -r ts-node/register --debug-brk test/*.test.ts",
+    "reveal": "mocha -r ts-node/register test/reveal.ts"
+  },
+  "files": [
+    "lib"
+  ],
+  "typings": "lib/index.d.ts",
+  "author": "Ricky Lee <rilee@seven.com.au>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.0.10",
+    "@types/mocha": "^2.2.45",
+    "@types/node": "^10.3.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "mocha-junit-reporter": "^1.15.0",
+    "prettier": "^1.9.2",
+    "ts-node": "^4.0.1",
+    "tslint-config-prettier": "^1.6.0"
+  },
+  "dependencies": {
+    "rimraf": "^2.6.2",
+    "tslint": "^5.10.0"
+  }
+}
